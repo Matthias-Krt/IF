@@ -1,0 +1,4 @@
+Kapitel 9A - Aufgaben
+
+Aufgabe 1:
+	Wenn man eine Variable nicht deklariert tritt beim kompilieren ein Fehler auf.

@@ -1,0 +1,55 @@
+Kapitel 8 - Primitive Datentypen
+
+Ein Datentyp
+	ist ein Schema für die Verwendung von Bits um Werte darzustellen.
+	Werte sind nicht nur Zahlen, sondern jede Art von Daten, die ein Computer verarbeiten kann.
+	Alle Werte in einem Computer werden dargestellt, indem der eine oder der andere Datentyp verwendet wird.
+
+Primitive Daten:
+	primitive Daten verwenden eine kleine feste Anzahl von Bytes
+	Es gibt nur acht primitive Datentypen
+	es können keine neuen primitiven Datentypen erstellt werden
+
+Objekte:
+	ist ein großer Block an Daten. Kann viele Speicherbytes verwenden
+	besteht gewöhnlich aus vielen internen Teilen.
+	Datentyp eines Objekts wir Klasse genannt
+	viele Klassen sind schon in java definiert
+	es können neue Klassen erstellt werden um die speziellen Anforderungen eines Programms zu erfüllen
+
+elementarer Komponent
+
+Ganzzahlen Primitive Datentypen
+Typ:		byte
+Größe:		8 Bit
+Wertebereich:	-128 bis + 127
+
+Typ:		short
+Größe:		16 Bit
+Wertebereich: 	-32768 bis + 32767
+
+Typ:		int
+Größe:		32 Bit
+Wertebereich: 	(ca.) -2 Milliarden bis +2 Milliarden
+
+Typ:		long
+Größe:		64 Bit
+Wertebereich:	(ca.) -10E18 bis +10E18
+
+Primitive Gleitpunkttypen
+Typ:		float
+Größe:		32 Bit
+Wertebereich:	-3.4E+38 bis +3.4E+38	
+
+Typ:		double
+Größe:		64 Bit
+Wertebereich:	-1.7E+308 bis 1.7E+308	
+
+Aufg. 1
+a) Ändern sie die Zahl zu einer anderen kleinen Zahl (356)
+b) Ändern sie die Zahl zu "35000"
+   Was passiert beim versuch das Programm zu starten?
+	Es kommt eine Error-Nachricht: "incompatible types: possible lossy conversion from int to short". Die Zahl ist zu groß für den Datentypen "short", ein 16 Bit Datentyp.
+   Lassen sie die Zahl gleich und verändern sie den Datentypen zu "int". Gibt es einen Unterschied?
+	Wenn man den Datentypen zu int ändert funktioniert das Programm ohne Probleme. Die Zahl passt in den Datentyp "int", weil dies ein 32 Bit Datentyp ist.
+	
