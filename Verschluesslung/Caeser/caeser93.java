@@ -86,7 +86,7 @@ public class caeser93 extends JFrame implements ActionListener {
 
     JPanel jpnl = new JPanel();
     JPanel btnJpnl = new JPanel();
-    JLabel topKeyLbl = new JLabel("Geben Sie das Verschluesslungswort ein:");
+    JLabel topKeyLbl = new JLabel("Geben Sie das Verschluesslungswort ein (nur fuer Vignere noetig):");
     JLabel topInLbl = new JLabel("Geben Sie das Codewort ein:");
     JTextField keyTxt = new JTextField(15);
     JTextField inTxt = new JTextField(15);
@@ -97,7 +97,7 @@ public class caeser93 extends JFrame implements ActionListener {
     public caeser93(String title) {
         super(title);
 
-        btnJpnl.setLayout(new BoxLayout(btnJpnl, BoxLayout.X_AXIS));
+        btnJpnl.setLayout(new FlowLayout());
         btnJpnl.add(encryptBtn);
         btnJpnl.add(encryptTrithemiusBtn);
 
