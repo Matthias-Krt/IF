@@ -1,4 +1,5 @@
 /* Matthias Korte
+
    Schreiben Sie je ein Verschluesslungsprogramm nach der Methode
    von Trithemius und nach Vigenere.
 */

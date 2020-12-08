@@ -1,4 +1,5 @@
 /* Matthias Korte
+
    In der Codetabele soll ein Codewort eingetragen werden, wobei mehrfach vorkommende Buchstaben dann weggelassen werden.
    Anschließend sollen die restlichen Stellen mit den uebrig gebliebenen Buchstaben der Reihe nach aufgefüllt.
 */
