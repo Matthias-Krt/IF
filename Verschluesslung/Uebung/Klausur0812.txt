@@ -1,10 +1,10 @@
 String decrypt(String klarTxt, int key) {
+    klarTxt = klarTxt.toUpperCase();
     String chiffre = "";
     char klarCh;
     int charNum;
-    int len = klarTxt.length();
 
-    for(int i = 0; i < len; i++) {
+    for(int i = 0; i < klarTxt.length(); i++) {
         klarCh = klarTxt.charAt(i);
 
         charNum = (int) klarCh - 65;
