@@ -54,40 +54,7 @@ public class EncryptTest extends JFrame implements ActionListener {
 
     }
 
-
-    public int key = 3;
-
-    String encrypt(String txt, String codeWord) {
-        String chiffre = "";
-        char ch, codeWordCh;
-        int len = txt.length();
-        int charNum;
-        int codeWordNum = 0;
-
-        for(int i = 0; i < len; i++){
-            ch = txt.charAt(i);
-            codeWordCh = codeWord.charAt(codeWordNum);
-
-            key = (int) codeWordCh - 65;
-
-            if(ch != 32){
-                charNum = (int) ch - 65;
-                charNum += key;
-                charNum %= 26;
-
-                chiffre += (char) (charNum + 65);
-            }else{
-                if(ch == 32) {chiffre += " ";}  //Leerzeichen
-            }
-
-            if(codeWordNum < codeWord.length()-1) {codeWordNum++;} else {codeWordNum = 0;}
-
-        }
-
-        return chiffre;
-    }
-
-    String encryptTrithemius(String txt) {
+    String trithemiusEncrypt(String txt) {
         String chiffre = "";
         char ch;
         int len = txt.length();
@@ -211,7 +178,7 @@ public class EncryptTest extends JFrame implements ActionListener {
                 input = removeVowelMutation(input);
 
                 inTxt.setText(input);
-                chiffreTxt.setText(encryptTrithemius(input));
+                chiffreTxt.setText(encrypt(input));
             } else {}
         } else if(actionCmd.equals("VignereFunc")) {
             chiffreTxt.setText(vigenereEncrypt(inTxt.getText(), keyTxt.getText()));
