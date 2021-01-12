@@ -57,11 +57,10 @@ public class EncryptTest extends JFrame implements ActionListener {
     String trithemiusEncrypt(String txt) {
         String chiffre = "";
         char ch;
-        int len = txt.length();
         int charNum;
         int codeWordNum = 0;
 
-        for(int i = 0; i < len; i++){
+        for(int i = 0; i < txt.length(); i++){
             ch = txt.charAt(i);
 
             key = i;
