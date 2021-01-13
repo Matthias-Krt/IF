@@ -8,81 +8,186 @@
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
+import java.math.BigInteger;
 
 public class RSA99 extends JFrame implements ActionListener {
 
-    JFrame frame = new JFrame("RSA");
+    String textToNumber(String s) {
+        StringBuffer sb = new StringBuffer("");
+        int alphabetIndex;
 
-    JPanel jpnl = new JPanel();
-    JPanel jpnlCenter = new JPanel();
-    JPanel jpnlKeysEN = new JPanel();
-    JPanel jpnlKeysD = new JPanel();
+        for (int i = 0; i < s.length(); i++) {
+            if (s.toUpperCase().charAt(i) != 32) {
+                alphabetIndex = (int) s.toUpperCase().charAt(i) - 64;
+            } else {
+                alphabetIndex = 0;
+            }
 
-    JLabel lblKeys = new JLabel("Schluessel E und N eingeben, dann Text:");
+            if (alphabetIndex < 10) { sb.append("0"); }
+            sb.append(alphabetIndex);
+        }
+
+        for (int i = 0; i < sb.length() % 4; i++ ) { sb.append("0"); }
+        for (int i = 4; i < sb.length() + 1; i += 5) { sb.insert(i, " "); }
+
+        return sb.toString();
+    }
+
+    String numberToText(String n) {
+        n = n.replaceAll(" ", "");
+
+        StringBuffer sb = new StringBuffer("");
+        int alphabetIndex;
+        char ch;
+
+        for (int i = 0; i < n.length(); i += 2) {
+            alphabetIndex = Integer.parseInt(n.substring(i, i + 2));
+            if (alphabetIndex < 1) {
+                ch = ' ';
+            } else {
+                ch = (char) (alphabetIndex + 64);
+            }
+            
+            sb.append(ch);
+        }
+
+        return sb.toString();
+    }
+
+    int rsaDecrypt(int num, int d, int n) {
+        BigInteger clearNum = new BigInteger("0");
+        BigInteger chiffreNum = BigInteger.valueOf(num);
+        BigInteger N = BigInteger.valueOf(n);
+
+        clearNum = chiffreNum.pow(d);
+        clearNum = clearNum.remainder(N);
+
+        return clearNum.intValue();
+    }
+
+    int rsaEncrypt(int num, int e, int n) {
+        BigInteger chiffreNum = new BigInteger("0");
+        BigInteger clearNum = BigInteger.valueOf(num);
+        BigInteger N = BigInteger.valueOf(n);
+
+        chiffreNum = clearNum.pow(e);
+        chiffreNum = chiffreNum.remainder(N);
+
+        return chiffreNum.intValue();
+    }
+
+    String encrypt(String num, int E, int N) {
+        StringBuffer sb = new StringBuffer("");
+        int blockNum;
+
+        for (String block : num.split(" ")) {
+            blockNum = Integer.parseInt(block);
+            blockNum = rsaEncrypt(blockNum, E, N);
+
+            for (int i = 0; i < 4 - String.valueOf(blockNum).length(); i++) { sb.append("0"); }
+            sb.append(blockNum);
+            sb.append(" ");
+        }
+
+        return sb.toString();
+    }
+
+    String decrypt(String num, int D, int N) {
+        StringBuffer sb = new StringBuffer("");
+        int blockNum;
+
+        for (String block : num.split(" ")) {
+            blockNum = Integer.parseInt(block);
+            blockNum = rsaDecrypt(blockNum, D, N);
+
+            for (int i = 0; i < 4 - String.valueOf(blockNum).length(); i++) { sb.append("0"); }
+            sb.append(blockNum);
+            sb.append(" ");
+        }
+
+        return sb.toString();
+    }
+
+    JPanel pnl = new JPanel();
+    JPanel pnlCenter = new JPanel();
+    JPanel pnlKeysEN = new JPanel();
+    JPanel pnlKeyD = new JPanel();
+
+    JLabel lblKeysEN = new JLabel("Schluessel E und N eingeben, dann Text:");
     JLabel lblKeyD = new JLabel("Schluessel D eingeben: ");
+    JLabel lblError = new JLabel("");
 
-    JTextField txtKeyE = new JTextField();
-    JTextField txtKeyN = new JTextField();
-    JTextField txtInput = new JTextField();
-    JTextField txtNumberInput = new JTextField();
-    JTextField txtKeyD = new JTextField();
-    JTextField txtNumberChiffre = new JTextField();
-    JTextField txtChiffre = new JTextField();
+    JTextField txtKeyE = new JTextField(15);
+    JTextField txtKeyN = new JTextField(15);
+    JTextField txtKeyD = new JTextField(15);
 
-    JButton btnEncrypt= new JButton("Verschluesseln");
+    JTextField txtInClearText = new JTextField();
+    JTextField txtInChiffreNumber = new JTextField();
+    JTextField txtOutClearNumber = new JTextField();    //Disabled
+    JTextField txtOutClearText = new JTextField();      //Disabled
+
+    JButton btnEncrypt = new JButton("Verschluesseln");
     JButton btnDecrypt = new JButton("Entschluesseln");
 
     public RSA99(String title) {
         super(title);
 
-        jpnlKeysEN.setLayout(new FlowLayout());
-        jpnlKeysEN.add(txtKeyE);
-        jpnlKeysEN.add(txtKeyN);
+        pnlKeysEN.setLayout(new FlowLayout());
+        pnlKeysEN.add(txtKeyE);
+        pnlKeysEN.add(txtKeyN);
 
-        jpnlKeysD.setLayout(new FlowLayout());
-        jpnlKeysD.add(lblKeyD);
-        jpnlKeysD.add(txtKeyD);
+        pnlKeyD.setLayout(new FlowLayout());
+        pnlKeyD.add(lblKeyD);
+        pnlKeyD.add(txtKeyD);
 
-        jpnlCenter.setLayout(new BoxLayout(jpnlCenter, BoxLayout.Y_AXIS));
-        jpnlCenter.add(jpnlKeysEN);
-        jpnlCenter.add(txtInput);
-        jpnlCenter.add(txtNumberInput);
-        jpnlCenter.add(jpnlKeysD);
-        jpnlCenter.add(txtNumberChiffre);
-        jpnlCenter.add(txtChiffre);
+        pnlCenter.setLayout(new BoxLayout(pnlCenter, BoxLayout.Y_AXIS));
+        pnlCenter.add(lblKeysEN);
+        pnlCenter.add(pnlKeysEN);
+        pnlCenter.add(txtInClearText);
+        pnlCenter.add(txtInChiffreNumber);
+        pnlCenter.add(pnlKeyD);
+        pnlCenter.add(txtOutClearNumber);
+        pnlCenter.add(txtOutClearText);
 
-        jpnl.setLayout(new BorderLayout());
-        jpnl.add(lblKeys, BorderLayout.NORTH);
-        jpnl.add(btnEncrypt, BorderLayout.WEST);
-        jpnl.add(btnDecrypt, BorderLayout.EAST);
-        jpnl.add(jpnlCenter, BorderLayout.CENTER);
+        pnl.setLayout(new BorderLayout());
+        pnl.add(btnEncrypt, BorderLayout.WEST);
+        pnl.add(btnDecrypt, BorderLayout.EAST);
+        pnl.add(pnlCenter, BorderLayout.CENTER);
+        pnl.add(lblError, BorderLayout.SOUTH);
 
-        btnEncrypt.setActionCommand("Encrypt");
-        btnDecrypt.setActionCommand("Decrypt");
+        txtOutClearNumber.setEnabled(false);
+        txtOutClearText.setEnabled(false);
+
+        btnEncrypt.setActionCommand("encrypt");
         btnEncrypt.addActionListener(this);
+        btnDecrypt.setActionCommand("decrypt");
         btnDecrypt.addActionListener(this);
 
-        this.getContentPane().add(jpnl);
+        this.getContentPane().add(pnl);
         pack();
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
     }
 
     public void actionPerformed(ActionEvent evt) {
-        if (evt.getActionCommand().equals("Encrypt")) {
+        if (evt.getActionCommand().equals("encrypt")) {
+            int E = Integer.parseInt(txtKeyE.getText());
+            int N = Integer.parseInt(txtKeyN.getText());
 
-        } else if(evt.getActionCommand().equals("Decrypt")) {
+            txtInChiffreNumber.setText(encrypt(textToNumber(txtInClearText.getText()), E, N));
+            txtOutClearNumber.setText(textToNumber(txtInClearText.getText()));
+        } else if (evt.getActionCommand().equals("decrypt")) {
+            int D = Integer.parseInt(txtKeyD.getText());
+            int N = Integer.parseInt(txtKeyN.getText());
 
+            txtOutClearNumber.setText(decrypt(txtInChiffreNumber.getText(), D, N));
+            txtOutClearText.setText(numberToText(txtOutClearNumber.getText()));
         }
     }
 
     public static void main(String[] args) {
-
         RSA99 win = new RSA99("RSA");
         win.setSize(800, 500);
         win.setVisible(true);
-
     }
-
 }
