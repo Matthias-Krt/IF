@@ -47,7 +47,7 @@ public class RSA99 extends JFrame implements ActionListener {
             } else {
                 ch = (char) (alphabetIndex + 64);
             }
-            
+
             sb.append(ch);
         }
 
