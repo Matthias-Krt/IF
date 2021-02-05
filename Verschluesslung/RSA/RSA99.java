@@ -13,27 +13,35 @@ import java.math.BigInteger;
 public class RSA99 extends JFrame implements ActionListener {
 
     String textToNumber(String s) {
+        /* For Example: Hallo Java Fans --> 0801 1212 1500 1001 2201 6114 1900 */
         StringBuffer sb = new StringBuffer("");
         int alphabetIndex;
 
         for (int i = 0; i < s.length(); i++) {
             if (s.toUpperCase().charAt(i) != 32) {
+                //No Space
                 alphabetIndex = (int) s.toUpperCase().charAt(i) - 64;
             } else {
+                //Space
                 alphabetIndex = 0;
             }
 
+            //Two digits per Letter
             if (alphabetIndex < 10) { sb.append("0"); }
             sb.append(alphabetIndex);
         }
 
+        //Fill last Block
         for (int i = 0; i < sb.length() % 4; i++ ) { sb.append("0"); }
+        //Add Spaces between Blocks
         for (int i = 4; i < sb.length() + 1; i += 5) { sb.insert(i, " "); }
 
         return sb.toString();
     }
 
     String numberToText(String n) {
+        /* For Example: 0801 1212 1500 1001 2201 6114 1900 --> Hallo Java Fans */
+        //Remove Spaces
         n = n.replaceAll(" ", "");
 
         StringBuffer sb = new StringBuffer("");
@@ -41,9 +49,9 @@ public class RSA99 extends JFrame implements ActionListener {
         char ch;
 
         for (int i = 0; i < n.length(); i += 2) {
-            alphabetIndex = Integer.parseInt(n.substring(i, i + 2));
+            alphabetIndex = Integer.parseInt(n.substring(i, i + 2));    //Two digits
             if (alphabetIndex < 1) {
-                ch = ' ';
+                ch = ' ';   //Space
             } else {
                 ch = (char) (alphabetIndex + 64);
             }
