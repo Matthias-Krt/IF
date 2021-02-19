@@ -13,7 +13,8 @@ public class ReadWriteFiles {
 
         //in eine Datei schreiben
         FileWriter writer = new FileWriter(path + ".txt");
-        for (int i = 65; i < 91; i++) { writer.write(i); }
+
+        for (int i = 0; i < 88; i++) { String s = String.valueOf(i); writer.write(s); writer.write(","); }
         writer.write(System.getProperty("line.separator"));
         writer.write("ABCDEFGHIJKLMNOPQRSTUVWXYZ");
         writer.close();
