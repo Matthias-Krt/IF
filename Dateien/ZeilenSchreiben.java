@@ -12,7 +12,7 @@ import java.util.Random;
 public class ZeilenSchreiben {
     public static void main(String[] args) throws IOException {
 
-        String path = "E:/temp/Randomtext.txt";
+        String path = "C:/temp/Randomtext.txt";
         int maxCharactersInRow = 40;
 
         Scanner s = new Scanner(System.in);
@@ -27,9 +27,9 @@ public class ZeilenSchreiben {
 
         for (int i = 0; i < zeilen; i++) {
             for (int j = 0; j < maxCharactersInRow; j++) {
-                writer.write(characters.charAt(rand.nextInt(characters.length()));
+                writer.write(characters.charAt(rand.nextInt(characters.length())));
             }
-            writer.write(System.getProperty("line.separator"));
+            writer.write(System.getProperty("line.separator")); // "\n"
         }
 
         writer.close();

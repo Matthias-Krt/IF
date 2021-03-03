@@ -8,7 +8,7 @@ import java.util.Scanner;
 public class ReadWriteFiles9_2 {
     public static void main(String[] args) throws IOException {
 
-        String path = "E:/temp/java";
+        String path = "C:/temp/java";
 
         PrintWriter writer = new PrintWriter(path + "9_2.txt");
 

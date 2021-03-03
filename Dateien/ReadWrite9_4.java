@@ -1,8 +1,11 @@
+/* Matthias Korte
+*/
+
 import java.io.*;
 
 public class ReadWrite9_4 {
     public static void main(String[] args) {
-        String path = "E:/temp/";
+        String path = "C:/temp/";
 
         File eineDatei = new File(path, "java_94.txt");
         System.out.println("Name der Datei: " + eineDatei.getName());
@@ -16,7 +19,7 @@ public class ReadWrite9_4 {
             System.out.println(lw.getPath());
         }
 
-        File pfad = new File("E:/temp");
+        File pfad = new File("C:/temp");
         File [] verzeichnisse = pfad.listFiles();
         for (File vz : verzeichnisse) {
             if (vz.isFile()) {

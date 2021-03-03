@@ -1,3 +1,6 @@
+/* Matthias Korte
+*/
+
 import java.io.*;
 
 class Kunde implements Serializable {
@@ -34,7 +37,7 @@ class Auftrag implements Serializable {
 
 public class ReadWrite9_3 {
     public static void main(String[] args) throws IOException, ClassNotFoundException {
-        String path = "E:/temp/Auftrag.xxx";
+        String path = "C:/temp/Auftrag.xxx";
 
         Kunde ersterKunde = new Kunde("Hansen");
         Kunde zweiterKunde = new Kunde("Maier");
