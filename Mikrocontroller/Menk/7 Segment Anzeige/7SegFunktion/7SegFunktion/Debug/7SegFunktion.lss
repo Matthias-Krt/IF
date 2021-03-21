@@ -1,0 +1,450 @@
+
+7SegFunktion.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .data         0000000c  00800100  00000230  000002a4  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  1 .text         00000230  00000000  00000000  00000074  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  2 .comment      00000030  00000000  00000000  000002b0  2**0
+                  CONTENTS, READONLY
+  3 .note.gnu.avr.deviceinfo 00000040  00000000  00000000  000002e0  2**2
+                  CONTENTS, READONLY
+  4 .debug_aranges 00000038  00000000  00000000  00000320  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  5 .debug_info   00000861  00000000  00000000  00000358  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_abbrev 00000727  00000000  00000000  00000bb9  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_line   000003a4  00000000  00000000  000012e0  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_frame  00000078  00000000  00000000  00001684  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_str    000003e8  00000000  00000000  000016fc  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_loc    0000019f  00000000  00000000  00001ae4  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_ranges 00000028  00000000  00000000  00001c83  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 34 00 	jmp	0x68	; 0x68 <__ctors_end>
+   4:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+   8:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+   c:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  10:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  14:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  18:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  1c:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  20:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  24:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  28:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  2c:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  30:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  34:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  38:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  3c:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  40:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  44:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  48:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  4c:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  50:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  54:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  58:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  5c:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  60:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  64:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+
+00000068 <__ctors_end>:
+  68:	11 24       	eor	r1, r1
+  6a:	1f be       	out	0x3f, r1	; 63
+  6c:	cf ef       	ldi	r28, 0xFF	; 255
+  6e:	d8 e0       	ldi	r29, 0x08	; 8
+  70:	de bf       	out	0x3e, r29	; 62
+  72:	cd bf       	out	0x3d, r28	; 61
+
+00000074 <__do_copy_data>:
+  74:	11 e0       	ldi	r17, 0x01	; 1
+  76:	a0 e0       	ldi	r26, 0x00	; 0
+  78:	b1 e0       	ldi	r27, 0x01	; 1
+  7a:	e0 e3       	ldi	r30, 0x30	; 48
+  7c:	f2 e0       	ldi	r31, 0x02	; 2
+  7e:	02 c0       	rjmp	.+4      	; 0x84 <__do_copy_data+0x10>
+  80:	05 90       	lpm	r0, Z+
+  82:	0d 92       	st	X+, r0
+  84:	ac 30       	cpi	r26, 0x0C	; 12
+  86:	b1 07       	cpc	r27, r17
+  88:	d9 f7       	brne	.-10     	; 0x80 <__do_copy_data+0xc>
+  8a:	0e 94 db 00 	call	0x1b6	; 0x1b6 <main>
+  8e:	0c 94 16 01 	jmp	0x22c	; 0x22c <_exit>
+
+00000092 <__bad_interrupt>:
+  92:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+00000096 <sv1>:
+#ifndef SV1_H_
+#define SV1_H_
+
+void sv1(uint8_t ausgabe)
+{
+	DDRB |= 0x3F;						//Richtungsregister PORTB PB0-PB5 auf Ausgang
+  96:	94 b1       	in	r25, 0x04	; 4
+  98:	9f 63       	ori	r25, 0x3F	; 63
+  9a:	94 b9       	out	0x04, r25	; 4
+	DDRD |= 0xC0;						//Richtungsregister PORTD PB6 und PB7 auf Ausgang
+  9c:	9a b1       	in	r25, 0x0a	; 10
+  9e:	90 6c       	ori	r25, 0xC0	; 192
+  a0:	9a b9       	out	0x0a, r25	; 10
+	
+	PORTB = ausgabe;					//Ausgabe LED0-5
+  a2:	85 b9       	out	0x05, r24	; 5
+	
+	if (ausgabe & 0x40)					//Wenn ausgabe an der Stelle 6 = 1
+  a4:	86 ff       	sbrs	r24, 6
+  a6:	02 c0       	rjmp	.+4      	; 0xac <sv1+0x16>
+	{
+		PORTD |= (1<<PD6);				//LED6 = HIGH
+  a8:	5e 9a       	sbi	0x0b, 6	; 11
+  aa:	01 c0       	rjmp	.+2      	; 0xae <sv1+0x18>
+	}
+	else							
+	PORTD &= ~(1<<PD6);					//sonst LED6 = LOW
+  ac:	5e 98       	cbi	0x0b, 6	; 11
+	
+	
+	if (ausgabe & 0x80)						//Wenn ausgabe an der Stelle 7 = 1 
+  ae:	88 23       	and	r24, r24
+  b0:	14 f4       	brge	.+4      	; 0xb6 <sv1+0x20>
+	{
+		PORTD |= (1<<PD7);				//LED7 = HIGH
+  b2:	5f 9a       	sbi	0x0b, 7	; 11
+  b4:	08 95       	ret
+	}
+	
+	else
+	PORTD &= ~(1<<PD7);					//sonst LED7 = LOW
+  b6:	5f 98       	cbi	0x0b, 7	; 11
+  b8:	08 95       	ret
+
+000000ba <sv2>:
+#ifndef SV2_H_
+#define SV2_H_
+
+void sv2(uint8_t ausgabe)
+{
+	DDRD |= (1<<PD5)|(1<<PD4)|(1<<PD3)|(1<<PD2);			//Richtungsregister PORTD PD5-PD2 auf Ausgang
+  ba:	9a b1       	in	r25, 0x0a	; 10
+  bc:	9c 63       	ori	r25, 0x3C	; 60
+  be:	9a b9       	out	0x0a, r25	; 10
+	DDRC |= (1<<PC3)|(1<<PC2)|(1<<PC1)|(1<<PC0);			//Richtungsregister PORTC PC3-PC0 auf Ausgang
+  c0:	97 b1       	in	r25, 0x07	; 7
+  c2:	9f 60       	ori	r25, 0x0F	; 15
+  c4:	97 b9       	out	0x07, r25	; 7
+	
+	if (ausgabe & 0b00000001)			//Wenn ausgabe an der Stelle 0 = 1
+  c6:	80 ff       	sbrs	r24, 0
+  c8:	02 c0       	rjmp	.+4      	; 0xce <sv2+0x14>
+	{
+		PORTD |= (1<<PD5);				//LED0 = HIGH
+  ca:	5d 9a       	sbi	0x0b, 5	; 11
+  cc:	01 c0       	rjmp	.+2      	; 0xd0 <sv2+0x16>
+	}
+	else
+	PORTD &= ~(1<<PD5);					//sonst LED0 = LOW
+  ce:	5d 98       	cbi	0x0b, 5	; 11
+	
+	
+	if (ausgabe & 0b00000010)			//Wenn ausgabe an der Stelle 1 = 1
+  d0:	81 ff       	sbrs	r24, 1
+  d2:	02 c0       	rjmp	.+4      	; 0xd8 <sv2+0x1e>
+	{
+		PORTD |= (1<<PD4);				//LED1 = HIGH
+  d4:	5c 9a       	sbi	0x0b, 4	; 11
+  d6:	01 c0       	rjmp	.+2      	; 0xda <sv2+0x20>
+	}
+	else
+	PORTD &= ~(1<<PD4);					//sonst LED1 = LOW
+  d8:	5c 98       	cbi	0x0b, 4	; 11
+	
+	
+	if (ausgabe & 0b00000100)			//Wenn ausgabe an der Stelle 2 = 1
+  da:	82 ff       	sbrs	r24, 2
+  dc:	02 c0       	rjmp	.+4      	; 0xe2 <sv2+0x28>
+	{
+		PORTD |= (1<<PD3);				//LED2 = HIGH
+  de:	5b 9a       	sbi	0x0b, 3	; 11
+  e0:	01 c0       	rjmp	.+2      	; 0xe4 <sv2+0x2a>
+	}
+	else
+	PORTD &= ~(1<<PD3);					//sonst LED2 = LOW
+  e2:	5b 98       	cbi	0x0b, 3	; 11
+	
+	
+	if (ausgabe & 0b00001000)			//Wenn ausgabe an der Stelle 3 = 1
+  e4:	83 ff       	sbrs	r24, 3
+  e6:	02 c0       	rjmp	.+4      	; 0xec <sv2+0x32>
+	{
+		PORTD |= (1<<PD2);				//LED3 = HIGH
+  e8:	5a 9a       	sbi	0x0b, 2	; 11
+  ea:	01 c0       	rjmp	.+2      	; 0xee <sv2+0x34>
+	}
+	else
+	PORTD &= ~(1<<PD2);					//sonst LED3 = LOW
+  ec:	5a 98       	cbi	0x0b, 2	; 11
+	
+	
+	if (ausgabe & 0b00010000)			//Wenn ausgabe an der Stelle 4 = 1
+  ee:	84 ff       	sbrs	r24, 4
+  f0:	02 c0       	rjmp	.+4      	; 0xf6 <sv2+0x3c>
+	{
+		PORTC |= (1<<PC0);				//LED4 = HIGH
+  f2:	40 9a       	sbi	0x08, 0	; 8
+  f4:	01 c0       	rjmp	.+2      	; 0xf8 <sv2+0x3e>
+	}
+	else
+	PORTC &= ~(1<<PC0);					//sonst LED4 = LOW
+  f6:	40 98       	cbi	0x08, 0	; 8
+	
+	
+	if (ausgabe & 0b00100000)			//Wenn ausgabe an der Stelle 5 = 1
+  f8:	85 ff       	sbrs	r24, 5
+  fa:	02 c0       	rjmp	.+4      	; 0x100 <sv2+0x46>
+	{
+		PORTC |= (1<<PC1);				//LED5 = HIGH
+  fc:	41 9a       	sbi	0x08, 1	; 8
+  fe:	01 c0       	rjmp	.+2      	; 0x102 <sv2+0x48>
+	}
+	else
+	PORTC &= ~(1<<PC1);					//sonst LED5 = LOW
+ 100:	41 98       	cbi	0x08, 1	; 8
+	
+	
+	if (ausgabe & 0b01000000)			//Wenn ausgabe an der Stelle 6 = 1
+ 102:	86 ff       	sbrs	r24, 6
+ 104:	02 c0       	rjmp	.+4      	; 0x10a <sv2+0x50>
+	{
+		PORTC |= (1<<PC2);				//LED6 = HIGH
+ 106:	42 9a       	sbi	0x08, 2	; 8
+ 108:	01 c0       	rjmp	.+2      	; 0x10c <sv2+0x52>
+	}
+	else
+	PORTC &= ~(1<<PC2);					//sonst LED6 = LOW
+ 10a:	42 98       	cbi	0x08, 2	; 8
+	
+	
+	if (ausgabe & 0b10000000)			//Wenn ausgabe an der Stelle 7 = 1
+ 10c:	88 23       	and	r24, r24
+ 10e:	14 f4       	brge	.+4      	; 0x114 <sv2+0x5a>
+	{
+		PORTC |= (1<<PC3);				//LED7 = HIGH
+ 110:	43 9a       	sbi	0x08, 3	; 8
+ 112:	08 95       	ret
+	}
+	else
+	PORTC &= ~(1<<PC3);					//sonst LED7 = LOW
+ 114:	43 98       	cbi	0x08, 3	; 8
+ 116:	08 95       	ret
+
+00000118 <segAusgabe>:
+#include <util/delay.h>
+#include "sv1.h"
+#include "sv2.h"
+
+void segAusgabe(int wert)
+{
+ 118:	ef 92       	push	r14
+ 11a:	ff 92       	push	r15
+ 11c:	0f 93       	push	r16
+ 11e:	1f 93       	push	r17
+ 120:	cf 93       	push	r28
+ 122:	df 93       	push	r29
+ 124:	cd b7       	in	r28, 0x3d	; 61
+ 126:	de b7       	in	r29, 0x3e	; 62
+ 128:	2b 97       	sbiw	r28, 0x0b	; 11
+ 12a:	0f b6       	in	r0, 0x3f	; 63
+ 12c:	f8 94       	cli
+ 12e:	de bf       	out	0x3e, r29	; 62
+ 130:	0f be       	out	0x3f, r0	; 63
+ 132:	cd bf       	out	0x3d, r28	; 61
+ 134:	8c 01       	movw	r16, r24
+	const uint8_t segmente[11] = {0x03, 0xF3, 0x25, 0x0D, 0x99, 0x49, 0x41, 0x1F, 0x01, 0x19, 0xFE};
+ 136:	8b e0       	ldi	r24, 0x0B	; 11
+ 138:	e0 e0       	ldi	r30, 0x00	; 0
+ 13a:	f1 e0       	ldi	r31, 0x01	; 1
+ 13c:	de 01       	movw	r26, r28
+ 13e:	11 96       	adiw	r26, 0x01	; 1
+ 140:	01 90       	ld	r0, Z+
+ 142:	0d 92       	st	X+, r0
+ 144:	8a 95       	dec	r24
+ 146:	e1 f7       	brne	.-8      	; 0x140 <segAusgabe+0x28>
+	
+	//Negative Zahl ausgeben
+	if (wert < 0 && wert > (-10))
+ 148:	78 01       	movw	r14, r16
+ 14a:	c8 01       	movw	r24, r16
+ 14c:	09 96       	adiw	r24, 0x09	; 9
+ 14e:	09 97       	sbiw	r24, 0x09	; 9
+ 150:	48 f4       	brcc	.+18     	; 0x164 <segAusgabe+0x4c>
+	{
+		sv1(0xFD);					//Minuszeichen ausgeben
+ 152:	8d ef       	ldi	r24, 0xFD	; 253
+ 154:	0e 94 4b 00 	call	0x96	; 0x96 <sv1>
+		sv2(segmente[wert * (-1)]);	//Wert ausgeben
+ 158:	fe 01       	movw	r30, r28
+ 15a:	e0 1b       	sub	r30, r16
+ 15c:	f1 0b       	sbc	r31, r17
+ 15e:	81 81       	ldd	r24, Z+1	; 0x01
+ 160:	0e 94 5d 00 	call	0xba	; 0xba <sv2>
+	}
+	
+	//Positive Zahlen
+	if (wert >= 0 && wert < 100)
+ 164:	84 e6       	ldi	r24, 0x64	; 100
+ 166:	e8 16       	cp	r14, r24
+ 168:	f1 04       	cpc	r15, r1
+ 16a:	c0 f4       	brcc	.+48     	; 0x19c <segAusgabe+0x84>
+		int einer, zehner;
+		
+		einer = (int) wert % 10;	//Einer Wert berechnen
+		zehner = (int) wert / 10;	//Zehner Wert berechnen
+		
+		sv1(segmente[zehner]);		//Zehner Wert ausgeben
+ 16c:	c8 01       	movw	r24, r16
+ 16e:	6a e0       	ldi	r22, 0x0A	; 10
+ 170:	70 e0       	ldi	r23, 0x00	; 0
+ 172:	0e 94 ee 00 	call	0x1dc	; 0x1dc <__divmodhi4>
+ 176:	8c 01       	movw	r16, r24
+ 178:	e1 e0       	ldi	r30, 0x01	; 1
+ 17a:	f0 e0       	ldi	r31, 0x00	; 0
+ 17c:	ec 0f       	add	r30, r28
+ 17e:	fd 1f       	adc	r31, r29
+ 180:	e6 0f       	add	r30, r22
+ 182:	f7 1f       	adc	r31, r23
+ 184:	80 81       	ld	r24, Z
+ 186:	0e 94 4b 00 	call	0x96	; 0x96 <sv1>
+		sv2(segmente[einer]);		//Einer Wert ausgeben
+ 18a:	e1 e0       	ldi	r30, 0x01	; 1
+ 18c:	f0 e0       	ldi	r31, 0x00	; 0
+ 18e:	ec 0f       	add	r30, r28
+ 190:	fd 1f       	adc	r31, r29
+ 192:	e0 0f       	add	r30, r16
+ 194:	f1 1f       	adc	r31, r17
+ 196:	80 81       	ld	r24, Z
+ 198:	0e 94 5d 00 	call	0xba	; 0xba <sv2>
+	}
+}
+ 19c:	2b 96       	adiw	r28, 0x0b	; 11
+ 19e:	0f b6       	in	r0, 0x3f	; 63
+ 1a0:	f8 94       	cli
+ 1a2:	de bf       	out	0x3e, r29	; 62
+ 1a4:	0f be       	out	0x3f, r0	; 63
+ 1a6:	cd bf       	out	0x3d, r28	; 61
+ 1a8:	df 91       	pop	r29
+ 1aa:	cf 91       	pop	r28
+ 1ac:	1f 91       	pop	r17
+ 1ae:	0f 91       	pop	r16
+ 1b0:	ff 90       	pop	r15
+ 1b2:	ef 90       	pop	r14
+ 1b4:	08 95       	ret
+
+000001b6 <main>:
+
+int main(void)
+{
+    while (1) 
+    {
+		for(int i = -9; i < 100; i++)
+ 1b6:	c7 ef       	ldi	r28, 0xF7	; 247
+ 1b8:	df ef       	ldi	r29, 0xFF	; 255
+		{
+			segAusgabe(i);
+ 1ba:	ce 01       	movw	r24, r28
+ 1bc:	0e 94 8c 00 	call	0x118	; 0x118 <segAusgabe>
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+ 1c0:	2f ef       	ldi	r18, 0xFF	; 255
+ 1c2:	85 ea       	ldi	r24, 0xA5	; 165
+ 1c4:	9e e0       	ldi	r25, 0x0E	; 14
+ 1c6:	21 50       	subi	r18, 0x01	; 1
+ 1c8:	80 40       	sbci	r24, 0x00	; 0
+ 1ca:	90 40       	sbci	r25, 0x00	; 0
+ 1cc:	e1 f7       	brne	.-8      	; 0x1c6 <main+0x10>
+ 1ce:	00 c0       	rjmp	.+0      	; 0x1d0 <main+0x1a>
+ 1d0:	00 00       	nop
+
+int main(void)
+{
+    while (1) 
+    {
+		for(int i = -9; i < 100; i++)
+ 1d2:	21 96       	adiw	r28, 0x01	; 1
+ 1d4:	c4 36       	cpi	r28, 0x64	; 100
+ 1d6:	d1 05       	cpc	r29, r1
+ 1d8:	81 f7       	brne	.-32     	; 0x1ba <main+0x4>
+ 1da:	ed cf       	rjmp	.-38     	; 0x1b6 <main>
+
+000001dc <__divmodhi4>:
+ 1dc:	97 fb       	bst	r25, 7
+ 1de:	07 2e       	mov	r0, r23
+ 1e0:	16 f4       	brtc	.+4      	; 0x1e6 <__divmodhi4+0xa>
+ 1e2:	00 94       	com	r0
+ 1e4:	07 d0       	rcall	.+14     	; 0x1f4 <__divmodhi4_neg1>
+ 1e6:	77 fd       	sbrc	r23, 7
+ 1e8:	09 d0       	rcall	.+18     	; 0x1fc <__divmodhi4_neg2>
+ 1ea:	0e 94 02 01 	call	0x204	; 0x204 <__udivmodhi4>
+ 1ee:	07 fc       	sbrc	r0, 7
+ 1f0:	05 d0       	rcall	.+10     	; 0x1fc <__divmodhi4_neg2>
+ 1f2:	3e f4       	brtc	.+14     	; 0x202 <__divmodhi4_exit>
+
+000001f4 <__divmodhi4_neg1>:
+ 1f4:	90 95       	com	r25
+ 1f6:	81 95       	neg	r24
+ 1f8:	9f 4f       	sbci	r25, 0xFF	; 255
+ 1fa:	08 95       	ret
+
+000001fc <__divmodhi4_neg2>:
+ 1fc:	70 95       	com	r23
+ 1fe:	61 95       	neg	r22
+ 200:	7f 4f       	sbci	r23, 0xFF	; 255
+
+00000202 <__divmodhi4_exit>:
+ 202:	08 95       	ret
+
+00000204 <__udivmodhi4>:
+ 204:	aa 1b       	sub	r26, r26
+ 206:	bb 1b       	sub	r27, r27
+ 208:	51 e1       	ldi	r21, 0x11	; 17
+ 20a:	07 c0       	rjmp	.+14     	; 0x21a <__udivmodhi4_ep>
+
+0000020c <__udivmodhi4_loop>:
+ 20c:	aa 1f       	adc	r26, r26
+ 20e:	bb 1f       	adc	r27, r27
+ 210:	a6 17       	cp	r26, r22
+ 212:	b7 07       	cpc	r27, r23
+ 214:	10 f0       	brcs	.+4      	; 0x21a <__udivmodhi4_ep>
+ 216:	a6 1b       	sub	r26, r22
+ 218:	b7 0b       	sbc	r27, r23
+
+0000021a <__udivmodhi4_ep>:
+ 21a:	88 1f       	adc	r24, r24
+ 21c:	99 1f       	adc	r25, r25
+ 21e:	5a 95       	dec	r21
+ 220:	a9 f7       	brne	.-22     	; 0x20c <__udivmodhi4_loop>
+ 222:	80 95       	com	r24
+ 224:	90 95       	com	r25
+ 226:	bc 01       	movw	r22, r24
+ 228:	cd 01       	movw	r24, r26
+ 22a:	08 95       	ret
+
+0000022c <_exit>:
+ 22c:	f8 94       	cli
+
+0000022e <__stop_program>:
+ 22e:	ff cf       	rjmp	.-2      	; 0x22e <__stop_program>
